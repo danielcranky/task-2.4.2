@@ -26,7 +26,7 @@ public class CarController {
         cars.add(new Car("Lada", 2107, 75));
         cars.add(new Car("Peugeot", 407, 220));
 
-        if (!(count == null) && count < 5) {
+        if (count != null && count < 5) {
             cars = CarService.getCarListAfterRequest(cars, count);
         }
 

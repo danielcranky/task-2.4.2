@@ -7,9 +7,43 @@
 </head>
 <body>
 <div>
-    <th:block th:each="msg : ${messages}">
-        <h1 th:text="${msg}"></h1>
-    </th:block>
+    <h2>Users</h2>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Email</th>
+            <th>Действия</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getFirstName()}"></td>
+            <td th:text="${user.getLastName()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td>
+                <!--
+                <a th:href="@{/users/{id}/edit(id=${user.getId()})}">Редактировать</a>
+                <form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}">
+                    <input type="submit" value="Редактировать">
+                </form>
+                 -->
+                <a th:href="@{/users/{id}/edit(id=${user.getId()})}">
+                    <input type="submit" value="Редактировать">
+                </a>
+                <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+                    <input type="submit" value="Удалить">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <a th:href="@{/users/new}">
+        <input type="submit" value="Добавить пользователя">
+    </a>
+
 </div>
 </body>
 </html>

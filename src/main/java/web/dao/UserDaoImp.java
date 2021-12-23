@@ -1,5 +1,6 @@
 package web.dao;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import web.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -41,5 +42,12 @@ public class UserDaoImp implements UserDao {
    public void updateUser(Long id, User user) {
       user.setId(id);
       em.merge(user);
+   }
+
+   @Override
+   public UserDetails getUserByName(String s) {
+      TypedQuery<User> q = em.createQuery("select u From User u where u.name = :name", User.class);
+      q.setParameter("name", s);
+      return q.getSingleResult();
    }
 }

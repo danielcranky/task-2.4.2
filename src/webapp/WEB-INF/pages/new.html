@@ -7,7 +7,13 @@
 </head>
 <body>
 <div>
-    <form th:method="POST" th:action="@{/users}" th:object="${user}">
+    <form th:method="POST" th:action="@{/admin}" th:object="${user}">
+        <label for="name">Логин: </label>
+        <input type="text" th:field="*{name}" id="name">
+        <br>
+        <label for="password">Пароль: </label>
+        <input type="text" th:field="*{password}" id="password">
+        <br>
         <label for="firstName">Имя: </label>
         <input type="text" th:field="*{firstName}" id="firstName">
         <br>
@@ -16,6 +22,16 @@
         <br>
         <label for="email">Email: </label>
         <input type="text" th:field="*{email}" id="email">
+        <br>
+        <label for="listRoles">Select role:</label>
+        <br>
+        <select size="3" required multiple id="listRoles" name="listRoles">
+            <option th:each="role : ${roles}"
+                    th:value="${role.getRole()}"
+                    th:text="${role.getRole().substring(5)}"></option>
+        </select>
+
+
         <br>
         <br>
         <input type="submit" value="Добавить">
